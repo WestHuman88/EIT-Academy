@@ -66,7 +66,15 @@ p {
 </div>
 <script>
 function startLearning() {
-  alert("Раздел обучения скоро будет доступен.");
+ document.querySelector('.container').innerHTML = `
+<h1>Обучение EIT Academy</h1>
+<p>Выберите направление обучения:</p>
+<button class="button" onclick="alert('Electrical')">Electrical</button>
+<button class="button" onclick="alert('Instrumentation')">Instrumentation</button>
+<button class="button" onclick="alert('Telecom')">Telecom</button>
+<button class="button" onclick="alert('EX')">EX</button>
+<button class="button" onclick="alert('CompEx')">CompEx</button>
+`;
 }
 </script>
 </body>
