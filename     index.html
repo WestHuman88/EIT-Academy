@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EIT Academy</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111b;
+    color: #ffffff;
+}
+
+button {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1200px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+/* HEADER */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(7,17,27,0.96);
+    border-bottom: 1px solid #26384a;
+    backdrop-filter: blur(12px);
+}
+
+.header-inner {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 22px;
+}
+
+.logo-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #168cff, #00c6ff);
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+}
+
+.nav button {
+    background: transparent;
+    border: 0;
+    color: #b8c6d4;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav button:hover {
+    background: #122233;
+    color: #fff;
+}
+
+/* HERO */
+
+.hero {
+    padding: 70px 0 50px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.hero-card {
+    background:
+        radial-gradient(circle at 90% 10%, rgba(0,170,255,.2), transparent 35%),
+        #0c1a28;
+    border: 1px solid #263b50;
+    border-radius: 24px;
+    padding: 44px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 76px);
+    line-height: .95;
+    margin: 0 0 22px;
+}
+
+.hero h1 span {
+    color: #45a8ff;
+}
+
+.hero p {
+    color: #b6c5d4;
+    font-size: 19px;
+    line-height: 1.65;
+    max-width: 750px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.primary {
+    background: #168cff;
+    color: white;
+    border: 0;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.secondary {
+    background: transparent;
+    color: white;
+    border: 1px solid #39546d;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+}
+
+.stat {
+    background: #0c1a28;
+    border: 1px solid #263b50;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat strong {
+    font-size: 34px;
+    color: #49aaff;
+}
+
+.stat span {
+    color: #aebdca;
+    margin-top: 5px;
+}
+
+/* SECTIONS */
+
+.section {
+    padding: 50px 0;
+}
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    font-size: 34px;
+    margin: 0 0 10px;
+}
+
+.section-heading p {
+    color: #9eb0c0;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* COURSE CARDS */
+
+.courses {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.course {
+    background: #0c1a28;
+    border: 1px solid #263b50;
+    border-radius: 18px;
+    padding: 25px;
+    transition: .2s;
+}
+
+.course:hover {
+    transform: translateY(-3px);
+    border-color: #3d8ed0;
+}
+
+.course-number {
+    color: #49aaff;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.course h3 {
+    font-size: 25px;
+    margin: 12px 0;
+}
+
+.course p {
+    color: #9eb0c0;
+    line-height: 1.6;
+}
+
+.course-meta {
+    color: #73899b;
+    margin: 16px 0;
+}
+
+.course button {
+    width: 100%;
+    padding: 12px;
+    background: #122638;
+    color: white;
+    border: 1px solid #31516c;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.course button:hover {
+    background: #168cff;
+}
+
+/* LESSONS */
+
+.lesson-area {
+    display: none;
+}
+
+.lesson-area.active {
+    display: block;
+}
+
+.lesson-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 22px;
+}
+
+.lesson-sidebar {
+    background: #0c1a28;
+    border: 1px solid #263b50;
+    border-radius: 16px;
+    padding: 16px;
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+}
+
+.lesson-sidebar h3 {
+    margin: 8px 10px 15px;
+}
+
+.lesson-link {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    color: #aebdca;
+    border: 0;
+    padding: 11px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+.lesson-link:hover,
+.lesson-link.active {
+    background: #132b40;
+    color: white;
+}
+
+.lesson-content {
+    background: #0c1a28;
+    border: 1px solid #263b50;
+    border-radius: 18px;
+    padding: 34px;
+    min-height: 550px;
+}
+
+.lesson-content h2 {
+    font-size: 34px;
+    margin-top: 0;
+}
+
+.lesson-content h3 {
+    font-size: 23px;
+    margin-top: 30px;
+}
+
+.lesson-content p,
+.lesson-content li {
+    color: #b8c6d4;
+    line-height: 1.75;
+}
+
+.lesson-content ul {
+    padding-left: 22px;
+}
+
+.lesson-box {
+    background: #102638;
+    border-left: 4px solid #168cff;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 22px 0;
+}
+
+.lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.lesson-nav button {
+    padding: 12px 18px;
+    border-radius: 9px;
+    border: 1px solid #31516c;
+    background: #122638;
+    color: white;
+    cursor: pointer;
+}
+
+.lesson-nav button:hover {
+    background: #168cff;
+}
+
+/* FOOTER */
+
+.footer {
+    border-top: 1px solid #26384a;
+    margin-top: 60px;
+    padding: 35px 0;
+    color: #8094a7;
+}
+
+.footer strong {
+    color: white;
+}
+
+/* MOBILE */
+
+@media(max-width: 850px) {
+
+    .header-inner {
+        min-height: 60px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 35px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-card {
+        padding: 28px;
+    }
+
+    .courses {
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-sidebar {
+        position: static;
+    }
+
+    .lesson-content {
+        padding: 23px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+
+        <div class="logo">
+            <div class="logo-mark">EIT</div>
+            <div>EIT Academy</div>
+        </div>
+
+        <nav class="nav">
+            <button onclick="showHome()">Главная</button>
+            <button onclick="scrollToCourses()">Курсы</button>
+            <button onclick="scrollToAbout()">О платформе</button>
+        </nav>
+
+    </div>
+</header>
+
+
+<main id="home">
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+    <div class="hero-card">
+
+        <h1>
+            EIT<br>
+            <span>Academy</span>
+        </h1>
+
+        <p>
+            Профессиональная учебная платформа для специалистов
+            Electrical, Instrumentation, Telecom, EX и CompEx.
+        </p>
+
+        <p>
+            Изучай оборудование, системы, измерения, электротехнику,
+            промышленную автоматизацию, телекоммуникации и
+            взрывоопасные зоны в одном месте.
+        </p>
+
+        <div class="hero-actions">
+            <button class="primary" onclick="scrollToCourses()">
+                Начать обучение
+            </button>
+
+            <button class="secondary" onclick="scrollToAbout()">
+                О платформе
+            </button>
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong>5</strong>
+            <span>профессиональных направлений</span>
+        </div>
+
+        <div class="stat">
+            <strong>90+</strong>
+            <span>уроков</span>
+        </div>
+
+        <div class="stat">
+            <strong>100%</strong>
+            <span>учебный материал</span>
+        </div>
+
+        <div class="stat">
+            <strong>∞</strong>
+            <span>для дальнейшего развития</span>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="courses">
+
+<div class="container">
+
+<div class="section-heading">
+    <h2>Учебные направления</h2>
+    <p>
+        Выберите направление и откройте полный список уроков.
+    </p>
+</div>
+
+
+<div class="courses">
+
+    <article class="course">
+
+        <div class="course-number">01 / ELECTRICAL</div>
+
+        <h3>Electrical</h3>
+
+        <p>
+            Электротехника, электрические цепи, измерения,
+            защита, двигатели, трансформаторы и безопасность.
+        </p>
+
+        <div class="course-meta">18 уроков</div>
+
+        <button onclick="openCourse('electrical')">
+            Открыть курс
+        </button>
+
+    </article>
+
+
+    <article class="course">
+
+        <div class="course-number">02 / INSTRUMENTATION</div>
+
+        <h3>Instrumentation</h3>
+
+        <p>
+            КИПиА, датчики, давление, температура, расход,
+            4–20 mA, HART, PLC, SCADA и управление.
+        </p>
+
+        <div class="course-meta">18 уроков</div>
+
+        <button onclick="openCourse('instrumentation')">
+            Открыть курс
+        </button>
+
+    </article>
+
+
+    <article class="course">
+
+        <div class="course-number">03 / TELECOM</div>
+
+        <h3>Telecom</h3>
+
+        <p>
+            Сети, кабели, оптоволокно, Ethernet, IP,
+            Modbus, Profibus, Fieldbus и радиосвязь.
+        </p>
+
+        <div class="course-meta">18 уроков</div>
+
+        <button onclick="openCourse('telecom')">
+            Открыть курс
+        </button>
+
+    </article>
+
+
+    <article class="course">
+
+        <div class="course-number">04 / EX</div>
+
+        <h3>EX — Explosive Atmospheres</h3>
+
+        <p>
+            Взрывоопасные зоны, Ex-оборудование,
+            виды защиты, маркировка, монтаж и инспекция.
+        </p>
+
+        <div class="course-meta">20 уроков</div>
+
+        <button onclick="openCourse('ex')">
+            Открыть курс
+        </button>
+
+    </article>
+
+
+    <article class="course">
+
+        <div class="course-number">05 / COMPEX</div>
+
+        <h3>CompEx</h3>
+
+        <p>
+            Профессиональная подготовка по работе
+            с оборудованием и системами во взрывоопасных зонах.
+        </p>
+
+        <div class="course-meta">18 уроков</div>
+
+        <button onclick="openCourse('compex')">
+            Открыть курс
+        </button>
+
+    </article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section lesson-area" id="lessonArea">
+
+<div class="container">
+
+<div class="lesson-layout">
+
+    <aside class="lesson-sidebar">
+
+        <h3 id="courseTitle">
+            Курс
+        </h3>
+
+        <div id="lessonList"></div>
+
+    </aside>
+
+
+    <article class="lesson-content">
+
+        <button
+            class="secondary"
+            onclick="closeCourse()"
+            style="margin-bottom:25px;">
+            ← Назад к курсам
+        </button>
+
+        <div id="lessonContent"></div>
+
+    </article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="about">
+
+<div class="container">
+
+<div class="section-heading">
+
+    <h2>О EIT Academy</h2>
+
+    <p>
+        EIT Academy создаётся как единая профессиональная
+        образовательная платформа для инженеров, техников,
+        специалистов КИПиА, электриков, телекоммуникационных
+        специалистов и персонала, работающего с Ex-оборудованием.
+    </p>
+
+</div>
+
+<div class="course">
+
+<h3>Цель платформы</h3>
+
+<p>
+Создать понятную систему обучения от базовых принципов
+до профессионального уровня. Каждый раздел будет постепенно
+расширяться практическими примерами, схемами, оборудованием,
+процедурами и профессиональными материалами.
+</p>
+
+<div class="lesson-box">
+<strong>Важно:</strong>
+На текущем этапе тесты намеренно не добавляются.
+Сначала создаём полноценную учебную базу.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+<div class="container">
+
+<strong>EIT Academy</strong>
+
+<br><br>
+
+Professional learning platform for
+Electrical, Instrumentation, Telecom, EX and CompEx.
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* ============================================================
+   COURSE DATA
+============================================================ */
+
+const courses = {
+
+electrical: {
+
+title: "Electrical",
+
+lessons: [
+
+["Основы электричества",
+"Изучаем базовые понятия электричества: заряд, электрическое поле, ток, напряжение и сопротивление."],
+
+["Напряжение, ток и сопротивление",
+"Разбираем три фундаментальные величины электрической цепи и взаимосвязь между ними."],
+
+["Закон Ома",
+"Закон Ома и его практическое применение при расчёте напряжения, тока и сопротивления."],
+
+["Мощность и энергия",
+"Электрическая мощность, энергия, потребление оборудования и основные расчёты."],
+
+["Последовательные цепи",
+"Принцип работы последовательного соединения и распределение напряжения."],
+
+["Параллельные цепи",
+"Параллельное соединение, токи в ветвях и эквивалентное сопротивление."],
+
+["Электрические измерения",
+"Основы работы мультиметра, амперметра, вольтметра и других измерительных приборов."],
+
+["Кабели и проводники",
+"Типы проводников, сечение кабеля, материалы, изоляция и выбор кабеля."],
+
+["Защита электрических цепей",
+"Основные способы защиты электрических установок от аварийных режимов."],
+
+["Автоматические выключатели и предохранители",
+"Принцип работы автоматических выключателей, предохранителей и устройств защиты."],
+
+["Заземление",
+"Назначение защитного заземления и основные принципы системы заземления."],
+
+["Короткое замыкание",
+"Что происходит при коротком замыкании и почему необходима защита."],
+
+["AC и DC",
+"Постоянный и переменный ток, основные различия и области применения."],
+
+["Трёхфазные системы",
+"Трёхфазная электрическая система, фаза, линия, нейтраль и основные соединения."],
+
+["Электродвигатели",
+"Принцип работы электрических двигателей и основные типы промышленных двигателей."],
+
+["Трансформаторы",
+"Назначение трансформаторов, первичная и вторичная обмотки, напряжение и мощность."],
+
+["Электрические схемы",
+"Как читать электрические схемы, обозначения, линии, контакты и оборудование."],
+
+["Безопасность при работе с электрооборудованием",
+"Основные принципы безопасной работы с электрическими установками."]
+]
+
+},
+
+
+instrumentation: {
+
+title: "Instrumentation / КИПиА",
+
+lessons: [
+
+["Введение в КИПиА",
+"Что такое instrumentation, какие задачи выполняет КИПиА на промышленном объекте."],
+
+["Измерение давления",
+"Датчики давления, pressure transmitter и основные методы измерения."],
+
+["Измерение температуры",
+"RTD, термопары, температурные преобразователи и особенности измерения."],
+
+["Измерение уровня",
+"Основные методы измерения уровня жидкостей и сыпучих материалов."],
+
+["Измерение расхода",
+"Расходомеры и основные технологии измерения потока."],
+
+["Датчики и преобразователи",
+"Разница между sensor, transmitter и signal converter."],
+
+["Сигнал 4–20 mA",
+"Промышленный аналоговый токовый сигнал и его применение."],
+
+["HART",
+"Основы протокола HART и передача цифровой информации поверх 4–20 mA."],
+
+["Аналоговые и цифровые сигналы",
+"Разница между аналоговыми и цифровыми сигналами в системах автоматизации."],
+
+["Control Valve",
+"Назначение регулирующего клапана и его роль в технологическом процессе."],
+
+["Positioner",
+"Позиционер клапана, обратная связь и управление положением штока."],
+
+["PID-регулирование",
+"Основы proportional, integral и derivative составляющих регулятора."],
+
+["Контуры управления",
+"Как строится технологический контур измерения и управления."],
+
+["PLC",
+"Основы программируемых логических контроллеров и промышленной автоматизации."],
+
+["SCADA",
+"Назначение SCADA и визуализация технологических процессов."],
+
+["Калибровка приборов",
+"Что такое calibration и как проверяется точность измерительного прибора."],
+
+["Loop Check",
+"Проверка полного измерительного контура от field device до control system."],
+
+["Диагностика неисправностей КИП",
+"Методика поиска неисправностей в измерительных и управляющих контурах."]
+]
+
+},
+
+
+telecom: {
+
+title: "Telecom",
+
+lessons: [
+
+["Основы телекоммуникаций",
+"Базовые принципы передачи информации и построения телекоммуникационных систем."],
+
+["Аналоговые и цифровые сигналы",
+"Основные отличия аналоговой и цифровой передачи информации."],
+
+["Частота и пропускная способность",
+"Частота, bandwidth, скорость передачи данных и основные понятия связи."],
+
+["Медные кабели",
+"Типы медных кабелей и их применение в промышленных системах."],
+
+["Оптоволокно",
+"Основы fiber optic communication и преимущества оптической передачи."],
+
+["Fiber Optic",
+"Single-mode, multimode, коннекторы, сварка и основные методы проверки."],
+
+["Ethernet",
+"Основы Ethernet и структура локальных промышленных сетей."],
+
+["IP-адресация",
+"IP address, subnet и базовые принципы адресации оборудования."],
+
+["Сетевое оборудование",
+"Switch, router, media converter и другое сетевое оборудование."],
+
+["Industrial Ethernet",
+"Особенности Ethernet в промышленной автоматизации."],
+
+["RS-232 / RS-485",
+"Последовательные интерфейсы и их применение в промышленности."],
+
+["Modbus",
+"Основы Modbus RTU и Modbus TCP."],
+
+["Profibus",
+"Основные принципы Profibus и его применение в автоматизации."],
+
+["Fieldbus",
+"Промышленные цифровые сети и взаимодействие полевых устройств."],
+
+["Радиосвязь",
+"Основы промышленной радиосвязи и беспроводной передачи данных."],
+
+["Антенные системы",
+"Антенны, частота, усиление и основные характеристики."],
+
+["Основы сетевой диагностики",
+"Ping, проверка соединения, кабеля и базовая диагностика сети."],
+
+["Telecom Safety",
+"Безопасность при монтаже и обслуживании телекоммуникационного оборудования."]
+]
+
+},
+
+
+ex: {
+
+title: "EX — Explosive Atmospheres",
+
+lessons: [
+
+["Что такое взрывоопасная зона",
+"Понятие hazardous area и условия образования взрывоопасной атмосферы."],
+
+["Горючие газы и пары",
+"Как газы и пары могут создавать взрывоопасную атмосферу."],
+
+["Пыль и взрывоопасные среды",
+"Особенности взрывоопасных пылевых сред."],
+
+["Источники воспламенения",
+"Искры, горячие поверхности, электрические и механические источники воспламенения."],
+
+["Classification of Hazardous Areas",
+"Основные принципы классификации опасных зон."],
+
+["Zone 0 / 1 / 2",
+"Газовые зоны и различия между Zone 0, Zone 1 и Zone 2."],
+
+["Zone 20 / 21 / 22",
+"Пылевые зоны и различия между Zone 20, Zone 21 и Zone 22."],
+
+["Equipment Protection",
+"Как выбирается оборудование для работы во взрывоопасной зоне."],
+
+["Ex d — Flameproof",
+"Принцип взрывонепроницаемой защиты Ex d."],
+
+["Ex e — Increased Safety",
+"Принцип повышенной безопасности Ex e."],
+
+["Ex i — Intrinsic Safety",
+"Искробезопасные цепи и принцип ограничения энергии."],
+
+["Ex p — Pressurization",
+"Защита оборудованием под избыточным давлением."],
+
+["Ex n",
+"Основы защиты оборудования типа Ex n."],
+
+["Ex t",
+"Защита оборудования от воспламенения пылевой среды."],
+
+["Маркировка Ex-оборудования",
+"Как читать Ex marking и понимать основные обозначения оборудования."],
+
+["Кабельные вводы",
+"Назначение cable glands и требования к установке."],
+
+["Ex Inspection",
+"Основы инспекции оборудования во взрывоопасных зонах."],
+
+["Монтаж оборудования во взрывоопасной зоне",
+"Основные принципы правильного монтажа Ex-оборудования."],
+
+["Обслуживание Ex-оборудования",
+"Особенности технического обслуживания оборудования во взрывоопасных зонах."],
+
+["Документация и сертификаты",
+"Сертификаты, документация оборудования и контроль соответствия."]
+]
+
+},
+
+
+compex: {
+
+title: "CompEx",
+
+lessons: [
+
+["Основы CompEx",
+"Назначение CompEx и профессиональные компетенции специалистов."],
+
+["Правила безопасной работы",
+"Безопасная работа персонала на объектах с взрывоопасными зонами."],
+
+["Hazardous Area Documentation",
+"Документы, схемы и информация, необходимые специалисту."],
+
+["Equipment Selection",
+"Выбор оборудования в соответствии с требованиями опасной зоны."],
+
+["Installation",
+"Основные принципы установки оборудования."],
+
+["Inspection",
+"Проверка состояния установленного оборудования."],
+
+["Maintenance",
+"Техническое обслуживание Ex-оборудования."],
+
+["Intrinsically Safe Systems",
+"Основы искробезопасных систем."],
+
+["Flameproof Equipment",
+"Работа с оборудованием Ex d."],
+
+["Cable Glands",
+"Выбор и установка кабельных вводов."],
+
+["Ex Motors",
+"Электродвигатели для взрывоопасных зон."],
+
+["Ex Instruments",
+"Измерительные приборы и instrumentation в Ex-зонах."],
+
+["Ex Junction Boxes",
+"Соединительные коробки и правила их применения."],
+
+["Ex Control Equipment",
+"Промышленные устройства управления для опасных зон."],
+
+["Fault Finding",
+"Поиск неисправностей в Ex-системах."],
+
+["Практическая подготовка специалиста",
+"Как системно выполнять монтаж, проверку и обслуживание оборудования."],
+
+["Типичные ошибки",
+"Распространённые ошибки при выборе, монтаже и инспекции Ex-оборудования."],
+
+["Финальная подготовка",
+"Систематизация знаний перед переходом к практическому и экзаменационному этапу."]
+]
+
+}
+
+};
+
+
+/* ============================================================
+   COURSE OPENING
+============================================================ */
+
+let currentCourse = null;
+let currentLesson = 0;
+
+
+function openCourse(courseId) {
+
+    currentCourse = courseId;
+    currentLesson = 0;
+
+    const course = courses[courseId];
+
+    document.getElementById("courses").style.display = "none";
+    document.getElementById("about").style.display = "none";
+    document.getElementById("lessonArea").classList.add("active");
+
+    document.getElementById("courseTitle").textContent = course.title;
+
+    renderLessonList();
+    renderLesson();
+
+    document.getElementById("lessonArea")
+        .scrollIntoView({ behavior: "smooth" });
+}
+
+
+/* ============================================================
+   LESSON LIST
+============================================================ */
+
+function renderLessonList() {
+
+    const course = courses[currentCourse];
+
+    const list = document.getElementById("lessonList");
+
+    list.innerHTML = "";
+
+    course.lessons.forEach((lesson, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "lesson-link";
+
+        if (index === currentLesson) {
+            button.classList.add("active");
+        }
+
+        button.textContent =
+            (index + 1) + ". " + lesson[0];
+
+        button.onclick = () => {
+
+            currentLesson = index;
+
+            renderLessonList();
+            renderLesson();
+
+            window.scrollTo({
+                top: document.getElementById("lessonArea").offsetTop - 80,
+                behavior: "smooth"
+            });
+
+        };
+
+        list.appendChild(button);
+    });
+}
+
+
+/* ============================================================
+   LESSON CONTENT
+============================================================ */
+
+function renderLesson() {
+
+    const course = courses[currentCourse];
+
+    const lesson = course.lessons[currentLesson];
+
+    const title = lesson[0];
+    const description = lesson[1];
+
+    const content =
+`
+<h2>${currentLesson + 1}. ${title}</h2>
+
+<p>
+${description}
+</p>
+
+<div class="lesson-box">
+<strong>EIT Academy:</strong>
+Этот урок является частью курса
+<strong>${course.title}</strong>.
+</div>
+
+<h3>Что необходимо изучить</h3>
+
+<ul>
+    <li>Основные понятия темы.</li>
+    <li>Назначение и принцип работы оборудования или системы.</li>
+    <li>Профессиональные термины и обозначения.</li>
+    <li>Практическое применение полученных знаний.</li>
+    <li>Безопасность при работе с соответствующим оборудованием.</li>
+</ul>
+
+<h3>Практический подход</h3>
+
+<p>
+При изучении материала необходимо понимать не только
+определение термина, но и то, где соответствующая система
+используется на промышленном объекте, из каких компонентов
+она состоит и как специалист выполняет её проверку,
+обслуживание или диагностику.
+</p>
+
+<div class="lesson-box">
+<strong>Следующий этап:</strong>
+подробный учебный материал этого урока будет расширяться
+по мере развития EIT Academy.
+</div>
+
+<div class="lesson-nav">
+
+<button
+    onclick="previousLesson()"
+    ${currentLesson === 0 ? "disabled" : ""}>
+    ← Предыдущий
+</button>
+
+<button
+    onclick="nextLesson()"
+    ${currentLesson === course.lessons.length - 1 ? "disabled" : ""}>
+    Следующий →
+</button>
+
+</div>
+`;
+
+    document.getElementById("lessonContent").innerHTML = content;
+}
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+function nextLesson() {
+
+    const course = courses[currentCourse];
+
+    if (currentLesson < course.lessons.length - 1) {
+
+        currentLesson++;
+
+        renderLessonList();
+        renderLesson();
+
+    }
+
+}
+
+
+function previousLesson() {
+
+    if (currentLesson > 0) {
+
+        currentLesson--;
+
+        renderLessonList();
+        renderLesson();
+
+    }
+
+}
+
+
+function closeCourse() {
+
+    document.getElementById("lessonArea")
+        .classList.remove("active");
+
+    document.getElementById("courses")
+        .style.display = "block";
+
+    document.getElementById("about")
+        .style.display = "block";
+
+    window.scrollTo({
+        top: document.getElementById("courses").offsetTop - 70,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ============================================================
+   MAIN NAVIGATION
+============================================================ */
+
+function showHome() {
+
+    closeCourse();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+function scrollToCourses() {
+
+    closeCourse();
+
+    document.getElementById("courses")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+function scrollToAbout() {
+
+    closeCourse();
+
+    document.getElementById("about")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+</script>
+
+</body>
+</html>
