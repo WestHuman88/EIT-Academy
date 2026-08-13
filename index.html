@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050b13">
+<title>EIT Academy</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#050b13;
+ color:#fff;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
+}
+button{font:inherit;color:inherit}
+.app{min-height:100vh;display:flex}
+
+/* SIDEBAR */
+.sidebar{
+ position:fixed;left:0;top:0;bottom:0;width:222px;
+ background:#07111c;
+ border-right:1px solid #ffffff18;
+ padding:18px 10px;
+ z-index:10
+}
+.logo{
+ height:205px;
+ border-bottom:1px solid #ffffff18;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center
+}
+.logo-icon{
+ width:145px;height:145px;border-radius:14px;
+ display:flex;align-items:center;justify-content:center;
+ font-size:70px;
+ background:linear-gradient(145deg,#101d2c,#050b13);
+ border:2px solid #e8b900;
+ box-shadow:0 0 25px #e8b90033
+}
+.logo-title{margin-top:8px;font-size:17px;letter-spacing:1px}
+
+.nav{margin-top:10px;display:grid;gap:2px}
+.nav button{
+ border:0;background:transparent;text-align:left;
+ padding:10px 13px;border-radius:8px;cursor:pointer
+}
+.nav button:hover,.nav button.active{background:#12304e}
+.nav hr{border:0;border-top:1px solid #ffffff18;margin:7px 0}
+
+.yellow{color:#ffd000}
+.green{color:#45dc63}
+.purple{color:#c36cff}
+.orange{color:#ffc000}
+.blue{color:#279dff}
+
+.admin{
+ position:absolute;left:12px;right:12px;bottom:14px;
+ border-top:1px solid #ffffff18;padding:13px 8px;font-size:13px
+}
+.online{font-size:11px;color:#36dc58}
+
+/* MAIN */
+.main{
+ margin-left:222px;
+ width:calc(100% - 222px);
+ padding:52px 40px 60px;
+ max-width:1400px
+}
+.header{
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start
+}
+.welcome{font-size:22px;margin:0 0 3px}
+.brand{
+ font-size:42px;
+ line-height:1;
+ margin:0 0 9px;
+ font-weight:800;
+ letter-spacing:-1px
+}
+.subtitle{color:#aab3c0;font-size:15px;margin:0}
+.actions{display:flex;gap:20px;font-size:27px}
+.actions button{border:0;background:none;cursor:pointer}
+
+/* MAIN CARDS */
+.cards{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:10px;
+ margin-top:25px
+}
+.card{
+ height:208px;
+ position:relative;
+ overflow:hidden;
+ border-radius:12px;
+ border:1px solid #ffffff25;
+ cursor:pointer;
+ background:#0c1723;
+ box-shadow:0 10px 28px #0007;
+ transition:.2s
+}
+.card:hover{
+ transform:translateY(-3px);
+ box-shadow:0 14px 35px #0009
+}
+.card-bg{
+ position:absolute;
+ inset:0;
+ opacity:.55;
+ background-size:cover;
+ background-position:center
+}
+.electric .card-bg{
+ background:radial-gradient(circle at 50% 35%,#d9a90055,#08111c 72%)
+}
+.kip .card-bg{
+ background:radial-gradient(circle at 50% 35%,#27d65755,#08111c 72%)
+}
+.tele .card-bg{
+ background:radial-gradient(circle at 50% 35%,#a13cff55,#08111c 72%)
+}
+.ex .card-bg{
+ background:radial-gradient(circle at 50% 35%,#ffb30055,#08111c 72%)
+}
+.ai .card-bg{
+ background:radial-gradient(circle at 50% 35%,#168fff66,#08111c 72%)
+}
+.card:after{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:linear-gradient(180deg,#00000000 15%,#050b13ee 100%)
+}
+.card-content{
+ position:absolute;
+ left:14px;
+ right:10px;
+ bottom:16px;
+ z-index:2
+}
+.card-icon{
+ font-size:42px;
+ margin-bottom:9px;
+ text-shadow:0 2px 15px #000
+}
+.card h3{font-size:14px;margin:0 0 8px}
+.card p{font-size:13px;margin:0;color:#e3e7ed}
+
+.electric{border-color:#d8ae00}
+.kip{border-color:#2ebd4e}
+.tele{border-color:#934ac6}
+.ex{border-color:#d4a300}
+.ai{border-color:#1574bb}
+
+/* SECTIONS */
+.section{margin-top:35px}
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:12px
+}
+.section-head h2{font-size:19px;margin:0}
+.see{
+ border:0;background:none;
+ color:#2b9eff;
+ cursor:pointer;
+ font-size:13px
+}
+
+.continue{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px
+}
+.lesson{
+ background:linear-gradient(145deg,#0d1824,#09111a);
+ border:1px solid #ffffff18;
+ border-radius:10px;
+ padding:13px;
+ min-height:160px
+}
+.label{font-size:12px;margin-bottom:14px}
+.lesson h4{
+ font-size:14px;
+ line-height:1.45;
+ margin:0 0 19px;
+ font-weight:500
+}
+.progress{
+ height:5px;
+ background:#263340;
+ border-radius:5px;
+ overflow:hidden
+}
+.progress i{display:block;height:100%}
+.percent{text-align:right;font-size:12px;margin-top:6px}
+
+.recent{
+ border:1px solid #ffffff18;
+ border-radius:11px;
+ overflow:hidden;
+ background:#09131e
+}
+.row{
+ display:grid;
+ grid-template-columns:150px 1fr 90px;
+ min-height:44px;
+ align-items:center;
+ padding:0 13px;
+ border-bottom:1px solid #ffffff12;
+ font-size:12px
+}
+.row:last-child{border:0}
+.date{text-align:right;color:#b0b8c4}
+
+/* MOBILE */
+.mobile{display:none}
+
+@media(max-width:1050px){
+ .cards{grid-template-columns:repeat(3,1fr)}
+ .continue{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:700px){
+ .sidebar{display:none}
+ .main{
+  margin:0;
+  width:100%;
+  padding:23px 13px 90px
+ }
+ .welcome{font-size:17px}
+ .brand{font-size:31px}
+ .subtitle{font-size:12px}
+ .actions{font-size:22px;gap:12px}
+
+ .cards{
+  grid-template-columns:1fr;
+  gap:9px
+ }
+ .card{
+  height:94px
+ }
+ .card-content{
+  left:78px;
+  bottom:17px
+ }
+ .card-icon{
+  position:absolute;
+  left:-58px;
+  bottom:0;
+  font-size:40px
+ }
+ .card h3{font-size:15px;margin-bottom:5px}
+
+ .continue{grid-template-columns:1fr}
+ .recent{display:none}
+
+ .mobile{
+  position:fixed;
+  display:flex;
+  left:8px;
+  right:8px;
+  bottom:7px;
+  background:#0b1522f5;
+  border:1px solid #ffffff18;
+  border-radius:17px;
+  z-index:20
+ }
+ .mobile button{
+  flex:1;
+  border:0;
+  background:none;
+  padding:8px 2px;
+  font-size:10px
+ }
+ .mobile .active{color:#1d9dff}
+}
+
+/* INTERNAL PAGE */
+#page{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:50;
+ background:#050b13;
+ overflow:auto
+}
+.page-header{
+ padding:25px 35px;
+ display:flex;
+ align-items:center;
+ gap:18px;
+ border-bottom:1px solid #ffffff15
+}
+.back{
+ border:0;
+ background:#102033;
+ border-radius:10px;
+ padding:10px 15px;
+ cursor:pointer
+}
+.page-content{padding:35px;max-width:1200px;margin:auto}
+.page-hero{
+ min-height:220px;
+ border:1px solid #ffffff20;
+ border-radius:18px;
+ padding:30px;
+ background:
+ linear-gradient(90deg,#07111cee,#07111c77),
+ radial-gradient(circle at 70% 40%,#176cff44,#07111c 70%);
+ display:flex;
+ align-items:center;
+ gap:25px
+}
+.page-icon{font-size:70px}
+.page-hero h1{margin:0 0 8px;font-size:34px}
+.page-hero p{margin:0;color:#aab3c0}
+.empty{
+ margin-top:25px;
+ padding:35px;
+ border:1px dashed #ffffff25;
+ border-radius:15px;
+ text-align:center;
+ color:#9ba7b7
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- LEFT MENU -->
+<aside class="sidebar">
+
+<div class="logo">
+ <div class="logo-icon">EIT</div>
+ <div class="logo-title">EIT ACADEMY</div>
+</div>
+
+<nav class="nav">
+
+<button class="active">🏠　Главная</button>
+
+<button class="yellow"
+ onclick="openPage('⚡','Электричество','Электротехника и промышленная электрика.')">
+⚡　Электричество
+</button>
+
+<button class="green"
+ onclick="openPage('⚙️','КИПиА — автоматизация и управление','Контрольно-измерительные приборы, автоматизация и управление.')">
+⚙️　КИПиА
+</button>
+
+<button class="purple"
+ onclick="openPage('📡','Телеком','Телекоммуникации, сети и линии связи.')">
+📡　Телеком
+</button>
+
+<button class="orange"
+ onclick="openPage('🛡️','EX','Взрывозащита и оборудование для взрывоопасных зон.')">
+🛡️　EX
+</button>
+
+<button class="orange"
+ onclick="openPage('🛡️','CompEx','Отдельное направление CompEx.')">
+🛡️　CompEx
+</button>
+
+<button class="blue"
+ onclick="openAI()">
+🤖　AI-помощник
+</button>
+
+<hr>
+
+<button>☆　Избранное</button>
+<button>□　Мои материалы</button>
+<button>⇩　Загрузки</button>
+
+<hr>
+
+<button>⚙　Настройки</button>
+<button>ⓘ　О приложении</button>
+
+</nav>
+
+<div class="admin">
+ 👤　<b>Администратор</b><br>
+ <span class="online">● Онлайн</span>
+</div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="main">
+
+<div class="header">
+
+<div>
+<p class="welcome">Добро пожаловать в</p>
+<h1 class="brand">EIT ACADEMY</h1>
+<p class="subtitle">Ваш путь к знаниям и профессионализму</p>
+</div>
+
+<div class="actions">
+<button>⌕</button>
+<button>♧</button>
+<button>⋮</button>
+</div>
+
+</div>
+
+
+<!-- MAIN DIRECTIONS -->
+<div class="cards">
+
+<button class="card electric"
+ onclick="openPage('⚡','Электричество','Электротехника и промышленная электрика.')">
+<div class="card-bg"></div>
+<div class="card-content">
+<div class="card-icon">⚡</div>
+<h3>ЭЛЕКТРИЧЕСТВО</h3>
+<p>Все уроки</p>
+</div>
+</button>
+
+
+<button class="card kip"
+ onclick="openPage('⚙️','КИПиА — автоматизация и управление','Контрольно-измерительные приборы, автоматизация и управление.')">
+<div class="card-bg"></div>
+<div class="card-content">
+<div class="card-icon">⚙️</div>
+<h3>КИПиА</h3>
+<p>Все уроки</p>
+</div>
+</button>
+
+
+<button class="card tele"
+ onclick="openPage('📡','ТЕЛЕКОМ','Телекоммуникации, сети и линии связи.')">
+<div class="card-bg"></div>
+<div class="card-content">
+<div class="card-icon">📡</div>
+<h3>ТЕЛЕКОМ</h3>
+<p>Все уроки</p>
+</div>
+</button>
+
+
+<button class="card ex"
+ onclick="openPage('🛡️','EX','Взрывозащита.')">
+<div class="card-bg"></div>
+<div class="card-content">
+<div class="card-icon">🛡️</div>
+<h3>EX</h3>
+<p>Взрывозащита</p>
+</div>
+</button>
+
+
+<button class="card ai"
+ onclick="openAI()">
+<div class="card-bg"></div>
+<div class="card-content">
+<div class="card-icon">🧠</div>
+<h3>AI-ПОМОЩНИК</h3>
+<p>Ваш ассистент</p>
+</div>
+</button>
+
+</div>
+
+
+<!-- CONTINUE -->
+<section class="section">
+
+<div class="section-head">
+<h2>Продолжить обучение</h2>
+<button class="see">Смотреть все</button>
+</div>
+
+<div class="continue">
+
+<div class="lesson">
+<div class="label" style="color:#ffd000">⚡　Электричество</div>
+<h4>Основы электрических цепей постоянного тока</h4>
+<div class="progress">
+<i style="width:65%;background:#ffc400"></i>
+</div>
+<div class="percent">65%</div>
+</div>
+
+<div class="lesson">
+<div class="label" style="color:#42df62">⚙️　КИПиА</div>
+<h4>Датчики давления: принцип работы и типы</h4>
+<div class="progress">
+<i style="width:40%;background:#35d45c"></i>
+</div>
+<div class="percent">40%</div>
+</div>
+
+<div class="lesson">
+<div class="label" style="color:#c36cff">📡　Телеком</div>
+<h4>Оптоволоконные линии связи. Устройство и принцип работы</h4>
+<div class="progress">
+<i style="width:30%;background:#bf63ff"></i>
+</div>
+<div class="percent">30%</div>
+</div>
+
+<div class="lesson">
+<div class="label" style="color:#ffbf00">🛡️　EX / CompEx</div>
+<h4>Виды взрывозащиты Ex d, Ex e, Ex i</h4>
+<div class="progress">
+<i style="width:55%;background:#ffb400"></i>
+</div>
+<div class="percent">55%</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- RECENT -->
+<section class="section">
+
+<div class="section-head">
+<h2>Последние добавленные уроки</h2>
+<button class="see">Смотреть все</button>
+</div>
+
+<div class="recent">
+
+<div class="row">
+<span style="color:#ffd000">⚡　Электричество</span>
+<span>Схемы управления асинхронными двигателями</span>
+<span class="date">12.05.2025</span>
+</div>
+
+<div class="row">
+<span style="color:#42df62">⚙️　КИПиА</span>
+<span>Преобразователи температуры: принцип работы и виды</span>
+<span class="date">12.05.2025</span>
+</div>
+
+<div class="row">
+<span style="color:#c36cff">📡　Телеком</span>
+<span>Настройка коммутаторов Cisco. Основы</span>
+<span class="date">11.05.2025</span>
+</div>
+
+<div class="row">
+<span style="color:#ffbf00">🛡️　EX</span>
+<span>IEC 60079-14: проектирование электроустановок во взрывоопасных зонах</span>
+<span class="date">11.05.2025</span>
+</div>
+
+</div>
+</section>
+
+</main>
+</div>
+
+
+<!-- MOBILE MENU -->
+<nav class="mobile">
+
+<button class="active">🏠<br>Главная</button>
+<button>☆<br>Избранное</button>
+<button>□<br>Материалы</button>
+<button onclick="openAI()">🤖<br>AI</button>
+<button>◯<br>Профиль</button>
+
+</nav>
+
+
+<!-- INTERNAL SECTION PAGE -->
+<div id="page">
+
+<div class="page-header">
+
+<button class="back" onclick="closePage()">← Назад</button>
+
+<strong>EIT ACADEMY</strong>
+
+</div>
+
+<div class="page-content">
+
+<div class="page-hero">
+
+<div id="pageIcon" class="page-icon">⚡</div>
+
+<div>
+<h1 id="pageTitle">Электричество</h1>
+<p id="pageDescription"></p>
+</div>
+
+</div>
+
+<div class="empty">
+
+<h2>Материалы раздела</h2>
+
+<p>
+Уроки пока не загружаем.
+<br><br>
+Здесь будут размещены полноценные уроки, теория, изображения,
+документы и другие материалы.
+</p>
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+function openPage(icon,title,description){
+
+ document.getElementById("page").style.display="block";
+
+ document.getElementById("pageIcon").innerText=icon;
+
+ document.getElementById("pageTitle").innerText=title;
+
+ document.getElementById("pageDescription").innerText=description;
+
+ window.scrollTo(0,0);
+}
+
+function closePage(){
+
+ document.getElementById("page").style.display="none";
+
+}
+
+function openAI(){
+
+ document.getElementById("page").style.display="block";
+
+ document.getElementById("pageIcon").innerText="🤖";
+
+ document.getElementById("pageTitle").innerText="AI-помощник";
+
+ document.getElementById("pageDescription").innerText=
+ "Ваш интеллектуальный помощник EIT Academy.";
+
+}
+
+</script>
+
+</body>
+</html>
