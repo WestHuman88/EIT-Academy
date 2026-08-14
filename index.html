@@ -1,0 +1,4182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#050b13">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EIT Academy">
+
+<title>EIT Academy</title>
+
+<style>
+
+:root{
+--bg:#050b13;
+--panel:#09131e;
+--panel2:#0d1a28;
+--line:#ffffff18;
+--text:#f5f7fb;
+--muted:#9aa8b8;
+
+--yellow:#ffd000;
+--green:#42df62;
+--purple:#c36cff;
+--orange:#ffbd00;
+--red:#ff4e4e;
+--blue:#1597ff;
+}
+
+*{
+box-sizing:border-box;
+}
+
+html,
+body{
+margin:0;
+padding:0;
+min-height:100%;
+background:var(--bg);
+color:var(--text);
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Arial,
+sans-serif;
+}
+
+body{
+overflow-x:hidden;
+}
+
+button,
+input,
+textarea,
+select{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+color:inherit;
+}
+
+button:hover{
+filter:brightness(1.12);
+}
+
+input,
+textarea,
+select{
+outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+border-color:#168fff;
+box-shadow:0 0 0 2px #168fff22;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+min-height:100vh;
+display:flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+bottom:0;
+width:235px;
+background:#07111cf7;
+border-right:1px solid var(--line);
+padding:14px 10px;
+z-index:100;
+}
+
+.logo{
+height:185px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+border-bottom:1px solid var(--line);
+}
+
+.logoBox{
+width:145px;
+height:125px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:57px;
+font-weight:900;
+
+letter-spacing:-6px;
+
+background:
+linear-gradient(
+145deg,
+#18283a,
+#050b13
+);
+
+border:2px solid #e4b900;
+
+border-radius:15px;
+
+box-shadow:
+0 0 28px #e4b90030;
+}
+
+.logoTitle{
+font-size:16px;
+letter-spacing:2px;
+margin-top:8px;
+}
+
+.nav{
+display:grid;
+gap:3px;
+margin-top:10px;
+}
+
+.nav button{
+border:0;
+background:transparent;
+text-align:left;
+padding:11px 12px;
+border-radius:9px;
+}
+
+.nav button:hover,
+.nav button.active{
+background:#12304e;
+}
+
+.nav hr{
+width:100%;
+border:0;
+border-top:1px solid var(--line);
+margin:7px 0;
+}
+
+.yellow{
+color:var(--yellow);
+}
+
+.green{
+color:var(--green);
+}
+
+.purple{
+color:var(--purple);
+}
+
+.orange{
+color:var(--orange);
+}
+
+.red{
+color:var(--red);
+}
+
+.blue{
+color:#39a8ff;
+}
+
+.adminBadge{
+position:absolute;
+left:14px;
+right:14px;
+bottom:12px;
+
+border-top:1px solid var(--line);
+
+padding:12px 5px;
+
+font-size:13px;
+}
+
+.online{
+color:#3ee463;
+font-size:11px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+margin-left:235px;
+width:calc(100% - 235px);
+padding:42px;
+max-width:1500px;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+gap:20px;
+}
+
+.welcome{
+font-size:21px;
+margin:0 0 4px;
+}
+
+.brand{
+font-size:43px;
+line-height:1;
+margin:0 0 10px;
+font-weight:800;
+}
+
+.subtitle{
+margin:0;
+color:var(--muted);
+}
+
+.actions{
+display:flex;
+gap:9px;
+}
+
+.iconButton{
+width:44px;
+height:44px;
+
+border:1px solid var(--line);
+
+background:#091622;
+
+border-radius:10px;
+
+font-size:21px;
+}
+
+/* =========================
+   MAIN CARDS
+========================= */
+
+.cards{
+display:grid;
+grid-template-columns:
+repeat(6,1fr);
+
+gap:10px;
+
+margin-top:27px;
+}
+
+.card{
+height:205px;
+
+position:relative;
+
+overflow:hidden;
+
+border-radius:12px;
+
+border:1px solid var(--line);
+
+background:#0b1622;
+
+cursor:pointer;
+
+transition:.18s;
+
+box-shadow:
+0 10px 30px #0007;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+.cardBg{
+position:absolute;
+inset:0;
+}
+
+.electric .cardBg{
+background:
+radial-gradient(
+circle at 50% 30%,
+#d9a900aa,
+#08111c 72%
+);
+}
+
+.kip .cardBg{
+background:
+radial-gradient(
+circle at 50% 30%,
+#27d657aa,
+#08111c 72%
+);
+}
+
+.tele .cardBg{
+background:
+radial-gradient(
+circle at 50% 30%,
+#a13cffaa,
+#08111c 72%
+);
+}
+
+.ex .cardBg{
+background:
+radial-gradient(
+circle at 50% 30%,
+#ffb300aa,
+#08111c 72%
+);
+}
+
+.compex .cardBg{
+background:
+radial-gradient(
+circle at 50% 30%,
+#ff4747aa,
+#08111c 72%
+);
+}
+
+.ai .cardBg{
+background:
+radial-gradient(
+circle at 50% 30%,
+#168fffaa,
+#08111c 72%
+);
+}
+
+.card::after{
+content:"";
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+180deg,
+transparent 10%,
+#050b13ee 100%
+);
+
+pointer-events:none;
+}
+
+.cardContent{
+position:absolute;
+
+left:15px;
+right:10px;
+bottom:15px;
+
+z-index:2;
+}
+
+.cardIcon{
+font-size:40px;
+}
+
+.card h3{
+font-size:14px;
+margin:7px 0;
+}
+
+.card p{
+font-size:12px;
+margin:0;
+color:#e5e9ee;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+margin-top:35px;
+}
+
+.sectionHead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:12px;
+}
+
+.sectionHead h2{
+font-size:19px;
+margin:0;
+}
+
+.continue{
+display:grid;
+grid-template-columns:
+repeat(4,1fr);
+
+gap:10px;
+}
+
+.lesson{
+background:
+linear-gradient(
+145deg,
+#0d1824,
+#09111a
+);
+
+border:1px solid var(--line);
+
+border-radius:10px;
+
+padding:14px;
+
+min-height:150px;
+}
+
+.lessonTitle{
+font-size:14px;
+line-height:1.45;
+margin:14px 0;
+}
+
+.progress{
+height:5px;
+
+background:#263340;
+
+border-radius:5px;
+
+overflow:hidden;
+}
+
+.progress i{
+display:block;
+height:100%;
+}
+
+.recent{
+border:1px solid var(--line);
+border-radius:11px;
+overflow:hidden;
+}
+
+.row{
+display:grid;
+
+grid-template-columns:
+160px
+1fr
+110px;
+
+gap:10px;
+
+padding:12px;
+
+border-bottom:1px solid var(--line);
+
+font-size:12px;
+}
+
+.row:last-child{
+border-bottom:0;
+}
+
+.muted{
+color:var(--muted);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.overlay{
+position:fixed;
+inset:0;
+
+background:#000c;
+
+z-index:500;
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+padding:14px;
+}
+
+.overlay.open{
+display:flex;
+}
+
+.modal{
+width:min(1000px,100%);
+
+max-height:94vh;
+
+overflow:auto;
+
+background:#09131e;
+
+border:1px solid #ffffff22;
+
+border-radius:18px;
+
+box-shadow:
+0 25px 90px #000d;
+}
+
+.modalHead{
+position:sticky;
+
+top:0;
+
+z-index:5;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:15px 18px;
+
+background:#09131ef5;
+
+border-bottom:1px solid var(--line);
+
+backdrop-filter:blur(8px);
+}
+
+.modalHead h2{
+margin:0;
+
+font-size:20px;
+}
+
+.close{
+border:0;
+
+background:#142335;
+
+border-radius:8px;
+
+padding:7px 11px;
+}
+
+.modalBody{
+padding:18px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+border:0;
+
+border-radius:9px;
+
+padding:10px 14px;
+
+background:#087fe8;
+}
+
+.btn.secondary{
+background:#132235;
+border:1px solid var(--line);
+}
+
+.btn.success{
+background:#168a42;
+}
+
+.btn.danger{
+background:#8d2020;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.field{
+margin:11px 0;
+}
+
+.field label{
+display:block;
+
+font-size:12px;
+
+color:var(--muted);
+
+margin-bottom:5px;
+}
+
+.field input,
+.field textarea,
+.field select{
+width:100%;
+
+background:#06101b;
+
+color:white;
+
+border:1px solid var(--line);
+
+border-radius:9px;
+
+padding:10px;
+}
+
+.field textarea{
+min-height:220px;
+
+resize:vertical;
+
+line-height:1.55;
+}
+
+.toolbar{
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+margin-top:10px;
+}
+
+/* =========================
+   TABS
+========================= */
+
+.tabs{
+display:flex;
+
+flex-wrap:wrap;
+
+gap:7px;
+
+margin-bottom:15px;
+}
+
+.tab{
+border:1px solid var(--line);
+
+background:#0d1a29;
+
+border-radius:8px;
+
+padding:9px 12px;
+}
+
+.tab.active{
+background:#12304e;
+
+border-color:#248fe8;
+}
+
+/* =========================
+   ITEMS
+========================= */
+
+.item{
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:12px;
+
+padding:12px;
+
+border:1px solid var(--line);
+
+border-radius:10px;
+
+background:#0b1723;
+
+margin:8px 0;
+}
+
+.itemTitle{
+font-weight:600;
+}
+
+.item small{
+color:var(--muted);
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat{
+height:370px;
+
+overflow:auto;
+
+padding:9px;
+
+background:#06101a;
+
+border:1px solid var(--line);
+
+border-radius:10px;
+}
+
+.bubble{
+max-width:86%;
+
+padding:11px 13px;
+
+margin:8px 0;
+
+background:#132235;
+
+border-radius:11px;
+
+line-height:1.5;
+}
+
+.bubble.me{
+margin-left:auto;
+
+background:#0e416c;
+}
+
+.chatRow{
+display:flex;
+
+gap:8px;
+
+margin-top:9px;
+}
+
+.chatRow input{
+flex:1;
+
+background:#06101b;
+
+border:1px solid var(--line);
+
+border-radius:9px;
+
+padding:10px;
+
+color:white;
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+.stats{
+display:grid;
+
+grid-template-columns:
+repeat(5,1fr);
+
+gap:9px;
+}
+
+.stat{
+padding:15px;
+
+border:1px solid var(--line);
+
+border-radius:10px;
+
+background:#0b1723;
+}
+
+.stat b{
+font-size:25px;
+
+display:block;
+
+margin-bottom:5px;
+}
+
+.notice{
+padding:12px;
+
+border:1px solid var(--line);
+
+border-radius:10px;
+
+background:#0b1723;
+
+color:#c6d0db;
+
+margin:10px 0;
+
+line-height:1.5;
+}
+
+.empty{
+padding:30px;
+
+text-align:center;
+
+color:var(--muted);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobileNav{
+display:none;
+}
+
+@media(max-width:1100px){
+
+.cards{
+grid-template-columns:
+repeat(3,1fr);
+}
+
+.continue{
+grid-template-columns:
+repeat(2,1fr);
+}
+
+}
+
+@media(max-width:700px){
+
+.sidebar{
+display:none;
+}
+
+.main{
+margin:0;
+
+width:100%;
+
+padding:22px 13px 90px;
+}
+
+.welcome{
+font-size:16px;
+}
+
+.brand{
+font-size:31px;
+}
+
+.subtitle{
+font-size:12px;
+}
+
+.cards{
+grid-template-columns:1fr;
+
+gap:8px;
+}
+
+.card{
+height:88px;
+}
+
+.cardContent{
+left:78px;
+bottom:15px;
+}
+
+.cardIcon{
+position:absolute;
+
+left:-60px;
+
+bottom:-2px;
+
+font-size:38px;
+}
+
+.continue{
+grid-template-columns:1fr;
+}
+
+.recent{
+display:none;
+}
+
+.stats{
+grid-template-columns:
+repeat(2,1fr);
+}
+
+.mobileNav{
+position:fixed;
+
+z-index:300;
+
+display:flex;
+
+left:8px;
+
+right:8px;
+
+bottom:7px;
+
+background:#0b1522f5;
+
+border:1px solid var(--line);
+
+border-radius:16px;
+}
+
+.mobileNav button{
+flex:1;
+
+border:0;
+
+background:transparent;
+
+padding:8px 2px;
+
+font-size:10px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<div class="logoBox">
+EIT
+</div>
+
+<div class="logoTitle">
+EIT ACADEMY
+</div>
+
+</div>
+
+<nav class="nav">
+
+<button data-action="home">
+🏠　Главная
+</button>
+
+<button data-section="electric"
+class="yellow">
+⚡　Электричество
+</button>
+
+<button data-section="kip"
+class="green">
+⚙️　КИПиА — автоматизация и управление
+</button>
+
+<button data-section="tele"
+class="purple">
+📡　Телеком
+</button>
+
+<button data-section="ex"
+class="orange">
+🛡️　EX
+</button>
+
+<button data-section="compex"
+class="red">
+🛡️　CompEx
+</button>
+
+<button data-action="ai"
+class="blue">
+🤖　AI-помощник
+</button>
+
+<hr>
+
+<button data-action="favorites">
+☆　Избранное
+</button>
+
+<button data-action="materials">
+□　Мои материалы
+</button>
+
+<button data-action="uploads">
+⇩　Загрузки
+</button>
+
+<hr>
+
+<button data-action="admin">
+⚙️　Администратор
+</button>
+
+<button data-action="editor">
+✏️　Редактор
+</button>
+
+</nav>
+
+<div class="adminBadge">
+
+👤 <b>Founder / Administrator</b>
+
+<br>
+
+<span class="online">
+● Online
+</span>
+
+</div>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+<div id="homeView">
+
+<div class="header">
+
+<div>
+
+<p class="welcome">
+Добро пожаловать в
+</p>
+
+<h1 class="brand">
+EIT ACADEMY
+</h1>
+
+<p class="subtitle">
+Ваш путь к знаниям и профессионализму
+</p>
+
+</div>
+
+<div class="actions">
+
+<button
+class="iconButton"
+data-action="search">
+⌕
+</button>
+
+<button
+class="iconButton"
+data-action="ai">
+🤖
+</button>
+
+<button
+class="iconButton"
+data-action="admin">
+⚙️
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     MAIN CARDS
+========================= -->
+
+<div class="cards">
+
+
+<div class="card electric"
+data-section="electric">
+
+<div class="cardBg"></div>
+
+<div class="cardContent">
+
+<div class="cardIcon">
+⚡
+</div>
+
+<h3>
+ЭЛЕКТРИЧЕСТВО
+</h3>
+
+<p>
+Все материалы
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card kip"
+data-section="kip">
+
+<div class="cardBg"></div>
+
+<div class="cardContent">
+
+<div class="cardIcon">
+⚙️
+</div>
+
+<h3>
+КИПиА
+</h3>
+
+<p>
+Автоматизация и управление
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card tele"
+data-section="tele">
+
+<div class="cardBg"></div>
+
+<div class="cardContent">
+
+<div class="cardIcon">
+📡
+</div>
+
+<h3>
+ТЕЛЕКОМ
+</h3>
+
+<p>
+Все материалы
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card ex"
+data-section="ex">
+
+<div class="cardBg"></div>
+
+<div class="cardContent">
+
+<div class="cardIcon">
+🛡️
+</div>
+
+<h3>
+EX
+</h3>
+
+<p>
+Взрывозащита
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card compex"
+data-section="compex">
+
+<div class="cardBg"></div>
+
+<div class="cardContent">
+
+<div class="cardIcon">
+🛡️
+</div>
+
+<h3>
+COMPEX
+</h3>
+
+<p>
+Отдельное направление
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card ai"
+data-action="ai">
+
+<div class="cardBg"></div>
+
+<div class="cardContent">
+
+<div class="cardIcon">
+🧠
+</div>
+
+<h3>
+AI-ПОМОЩНИК
+</h3>
+
+<p>
+AI EIT Academy
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CONTINUE
+========================= -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>
+Продолжить обучение
+</h2>
+
+<button
+class="btn secondary"
+data-action="materials">
+
+Мои материалы
+
+</button>
+
+</div>
+
+<div
+class="continue"
+id="continue">
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RECENT
+========================= -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>
+Последние материалы
+</h2>
+
+<button
+class="btn secondary"
+data-action="editor">
+
+✏️ Редактор
+
+</button>
+
+</div>
+
+<div
+class="recent"
+id="recent">
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     MOBILE NAV
+========================= -->
+
+<nav class="mobileNav">
+
+<button data-action="home">
+🏠
+<br>
+Главная
+</button>
+
+<button data-action="favorites">
+☆
+<br>
+Избранное
+</button>
+
+<button data-action="materials">
+□
+<br>
+Материалы
+</button>
+
+<button data-action="ai">
+🤖
+<br>
+AI
+</button>
+
+<button data-action="admin">
+⚙️
+<br>
+Admin
+</button>
+
+</nav>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+id="overlay"
+class="overlay">
+
+<div class="modal">
+
+<div class="modalHead">
+
+<h2 id="modalTitle">
+EIT Academy
+</h2>
+
+<button
+class="close"
+data-action="close">
+✕
+</button>
+
+</div>
+
+<div
+id="modalBody"
+class="modalBody">
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+"use strict";
+
+/* =========================================================
+   EIT ACADEMY
+   SINGLE FILE APPLICATION
+========================================================= */
+
+
+/* =========================================================
+   AI SERVER
+=========================================================
+
+ВАЖНО:
+
+НЕ вставляй API KEY сюда.
+
+Когда мы создадим защищённый сервер EIT Academy,
+сюда будет указан адрес:
+
+https://api.eit-academy.com/ai
+
+Пока значение пустое.
+AI работает в локальном режиме.
+
+========================================================= */
+
+const AI_API_URL = "";
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+const SECTIONS = {
+
+electric:{
+
+name:"Электричество",
+
+icon:"⚡",
+
+color:"#ffd000",
+
+description:
+"Электротехника, электрические цепи, аппараты, двигатели, монтаж и безопасная работа."
+
+},
+
+kip:{
+
+name:"КИПиА — автоматизация и управление",
+
+icon:"⚙️",
+
+color:"#42df62",
+
+description:
+"Контрольно-измерительные приборы, датчики, измерение, калибровка, автоматизация и управление."
+
+},
+
+tele:{
+
+name:"Телеком",
+
+icon:"📡",
+
+color:"#c36cff",
+
+description:
+"Телекоммуникации, кабельные системы, оптика, сети и линии связи."
+
+},
+
+ex:{
+
+name:"EX",
+
+icon:"🛡️",
+
+color:"#ffbd00",
+
+description:
+"Взрывозащита, виды защиты, маркировка, зоны и оборудование."
+
+},
+
+compex:{
+
+name:"CompEx",
+
+icon:"🛡️",
+
+color:"#ff4e4e",
+
+description:
+"Отдельное направление CompEx. Не смешивается с EX."
+
+}
+
+};
+
+
+/* =========================================================
+   STARTER DATABASE
+========================================================= */
+
+const STARTER = [
+
+{
+
+id:"starter-electric",
+
+section:"electric",
+
+title:"Основы электрических цепей",
+
+type:"Теория",
+
+content:
+"Раздел подготовлен для полной теории по электрическим цепям, напряжению, току, сопротивлению, мощности и безопасной работе.\n\nПолный учебный материал можно добавить через редактор Founder."
+
+},
+
+{
+
+id:"starter-kip",
+
+section:"kip",
+
+title:"Датчики и измерительные преобразователи",
+
+type:"Теория",
+
+content:
+"Раздел подготовлен для теории по датчикам давления, температуры, уровня, расхода, измерительным преобразователям и практической работе с приборами.\n\nПолный учебный материал можно добавить через редактор Founder."
+
+},
+
+{
+
+id:"starter-tele",
+
+section:"tele",
+
+title:"Оптоволоконные линии связи",
+
+type:"Теория",
+
+content:
+"Раздел подготовлен для теории по оптическому волокну, кабелю, соединениям и измерениям.\n\nПолный учебный материал можно добавить через редактор Founder."
+
+},
+
+{
+
+id:"starter-ex",
+
+section:"ex",
+
+title:"Основы взрывозащиты",
+
+type:"Теория",
+
+content:
+"Раздел EX предназначен для отдельного изучения взрывозащиты.\n\nПолный учебный материал добавляется через редактор."
+
+},
+
+{
+
+id:"starter-compex",
+
+section:"compex",
+
+title:"CompEx — отдельное направление",
+
+type:"Теория",
+
+content:
+"CompEx хранится отдельно от EX.\n\nПолный учебный материал добавляется через редактор."
+
+}
+
+];
+
+
+/* =========================================================
+   DATABASE
+========================================================= */
+
+let DB;
+
+try{
+
+DB =
+JSON.parse(
+localStorage.getItem(
+"EIT_ACADEMY_DATABASE"
+)
+);
+
+}catch(error){
+
+DB=null;
+
+}
+
+if(!DB){
+
+DB={
+
+materials:STARTER,
+
+favorites:[],
+
+files:[],
+
+settings:{
+
+founderApproval:true,
+
+securityMode:true
+
+}
+
+};
+
+}
+
+if(!Array.isArray(DB.materials))
+DB.materials=[];
+
+if(!Array.isArray(DB.favorites))
+DB.favorites=[];
+
+if(!Array.isArray(DB.files))
+DB.files=[];
+
+if(!DB.settings)
+DB.settings={};
+
+DB.settings.founderApproval=true;
+DB.settings.securityMode=true;
+
+saveDB();
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function $(selector){
+
+return document.querySelector(selector);
+
+}
+
+function $$(selector){
+
+return Array.from(
+document.querySelectorAll(selector)
+);
+
+}
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replace(
+/[&<>"']/g,
+
+function(character){
+
+return {
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[character];
+
+}
+
+);
+
+}
+
+
+function saveDB(){
+
+localStorage.setItem(
+"EIT_ACADEMY_DATABASE",
+JSON.stringify(DB)
+);
+
+}
+
+
+function closeModal(){
+
+$("#overlay").classList.remove("open");
+
+}
+
+
+function openModal(title,html){
+
+$("#modalTitle").textContent=title;
+
+$("#modalBody").innerHTML=html;
+
+$("#overlay").classList.add("open");
+
+}
+
+
+function sectionMaterials(section){
+
+return DB.materials.filter(
+item =>
+item.section===section
+);
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function home(){
+
+closeModal();
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+renderHome();
+
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+function openSection(section){
+
+const data=SECTIONS[section];
+
+const materials=
+sectionMaterials(section);
+
+openModal(
+
+data.icon+" "+data.name,
+
+`
+
+<div class="notice">
+
+${escapeHTML(data.description)}
+
+</div>
+
+<div class="muted">
+
+Материалов в разделе:
+<b>${materials.length}</b>
+
+</div>
+
+<div style="margin-top:12px">
+
+${
+materials.length
+
+?
+
+materials
+.map(materialCard)
+.join("")
+
+:
+
+`
+
+<div class="empty">
+
+В этом разделе пока нет
+полной теории.
+
+<br><br>
+
+Открой ✏️ Редактор,
+чтобы добавить материал.
+
+</div>
+
+`
+
+}
+
+</div>
+
+`
+
+);
+
+}
+
+
+/* =========================================================
+   MATERIAL CARD
+========================================================= */
+
+function materialCard(item){
+
+const section=
+SECTIONS[item.section];
+
+const favorite=
+DB.favorites.includes(item.id);
+
+return `
+
+<div class="item">
+
+<div>
+
+<div class="itemTitle">
+
+${escapeHTML(item.title)}
+
+</div>
+
+<small>
+
+${section.icon}
+
+${escapeHTML(section.name)}
+
+·
+
+${escapeHTML(item.type || "Теория")}
+
+</small>
+
+</div>
+
+<div class="toolbar">
+
+<button
+class="btn secondary"
+data-open-material="${escapeHTML(item.id)}">
+
+Открыть
+
+</button>
+
+<button
+class="btn secondary"
+data-favorite="${escapeHTML(item.id)}">
+
+${favorite ? "★" : "☆"}
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   OPEN MATERIAL
+========================================================= */
+
+function openMaterial(id){
+
+const item=
+DB.materials.find(
+x=>x.id===id
+);
+
+if(!item)
+return;
+
+const section=
+SECTIONS[item.section];
+
+openModal(
+
+section.icon+" "+item.title,
+
+`
+
+<div class="muted">
+
+${escapeHTML(section.name)}
+
+·
+
+${escapeHTML(item.type || "Теория")}
+
+</div>
+
+<hr
+style="border-color:#ffffff12">
+
+<div
+style="
+white-space:pre-wrap;
+line-height:1.75;
+">
+
+${escapeHTML(item.content)}
+
+</div>
+
+`
+
+);
+
+}
+
+
+/* =========================================================
+   EDITOR
+========================================================= */
+
+function openEditor(){
+
+openModal(
+
+"✏️ Редактор EIT Academy",
+
+`
+
+<div class="tabs">
+
+<button
+class="tab active"
+data-editor-tab="new">
+
+➕ Новый материал
+
+</button>
+
+<button
+class="tab"
+data-editor-tab="list">
+
+📚 База
+
+</button>
+
+<button
+class="tab"
+data-editor-tab="files">
+
+📤 Файлы
+
+</button>
+
+</div>
+
+<div id="editorArea"></div>
+
+`
+
+);
+
+editorNew();
+
+}
+
+
+/* =========================================================
+   EDITOR NEW
+========================================================= */
+
+function editorNew(editId=""){
+
+const item=
+editId
+?
+DB.materials.find(
+x=>x.id===editId
+)
+:
+null;
+
+$("#editorArea").innerHTML=
+
+`
+
+<div class="notice">
+
+🔐 <b>Founder Approval включён.</b>
+
+Изменения материалов разрешены
+только после действия администратора.
+
+</div>
+
+
+<div class="field">
+
+<label>
+Направление
+</label>
+
+<select id="editorSection">
+
+${
+
+Object.entries(SECTIONS)
+.map(
+
+([key,data]) => `
+
+<option
+value="${key}"
+${item?.section===key ? "selected":""}
+>
+
+${data.name}
+
+</option>
+
+`
+
+)
+.join("")
+
+}
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Полное название
+</label>
+
+<input
+id="editorTitle"
+value="${escapeHTML(item?.title || "")}"
+placeholder="Полное название урока">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Тип материала
+</label>
+
+<select id="editorType">
+
+<option
+${item?.type==="Теория"?"selected":""}>
+Теория
+</option>
+
+<option
+${item?.type==="Практика"?"selected":""}>
+Практика
+</option>
+
+<option
+${item?.type==="Справочник"?"selected":""}>
+Справочник
+</option>
+
+<option
+${item?.type==="Материал"?"selected":""}>
+Материал
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Полная теория / материал
+</label>
+
+<textarea
+id="editorContent"
+placeholder="Вставь сюда полную теорию без сокращений">${escapeHTML(item?.content || "")}</textarea>
+
+</div>
+
+
+<div class="toolbar">
+
+<button
+class="btn success"
+data-save-material="${escapeHTML(editId)}">
+
+${editId
+?
+"💾 Сохранить изменения"
+:
+"➕ Добавить материал"}
+
+</button>
+
+<button
+class="btn secondary"
+data-editor-tab="list">
+
+📚 Открыть базу
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   EDITOR LIST
+========================================================= */
+
+function editorList(){
+
+$("#editorArea").innerHTML=
+
+`
+
+<div class="toolbar">
+
+<button
+class="btn"
+data-editor-tab="new">
+
+➕ Новый материал
+
+</button>
+
+<button
+class="btn secondary"
+data-action="export">
+
+⬇️ Экспорт базы
+
+</button>
+
+<button
+class="btn secondary"
+data-action="import">
+
+⬆️ Импорт базы
+
+</button>
+
+</div>
+
+
+<div style="margin-top:14px">
+
+${
+
+DB.materials.length
+
+?
+
+DB.materials
+.map(
+
+item => `
+
+<div class="item">
+
+<div>
+
+<div class="itemTitle">
+
+${escapeHTML(item.title)}
+
+</div>
+
+<small>
+
+${SECTIONS[item.section].icon}
+
+${escapeHTML(SECTIONS[item.section].name)}
+
+</small>
+
+</div>
+
+<div class="toolbar">
+
+<button
+class="btn secondary"
+data-edit-material="${escapeHTML(item.id)}">
+
+✏️
+
+</button>
+
+<button
+class="btn danger"
+data-delete-material="${escapeHTML(item.id)}">
+
+Удалить
+
+</button>
+
+</div>
+
+</div>
+
+`
+
+)
+.join("")
+
+:
+
+`
+
+<div class="empty">
+
+База материалов пуста.
+
+</div>
+
+`
+
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   SAVE MATERIAL
+========================================================= */
+
+function saveMaterial(editId){
+
+const title=
+$("#editorTitle").value.trim();
+
+const content=
+$("#editorContent").value.trim();
+
+const section=
+$("#editorSection").value;
+
+const type=
+$("#editorType").value;
+
+if(!title){
+
+alert(
+"Введите полное название материала."
+);
+
+return;
+
+}
+
+
+/*
+Founder Approval
+*/
+
+if(
+!confirm(
+"Founder Approval\n\n" +
+"Вы разрешаете сохранить это изменение?"
+)
+){
+
+return;
+
+}
+
+
+if(editId){
+
+const item=
+DB.materials.find(
+x=>x.id===editId
+);
+
+if(!item)
+return;
+
+item.title=title;
+item.content=content;
+item.section=section;
+item.type=type;
+item.updated=
+new Date().toLocaleString("ru-RU");
+
+}else{
+
+DB.materials.push({
+
+id:
+"material-" +
+Date.now() +
+"-" +
+Math.random()
+.toString(16)
+.slice(2),
+
+section:section,
+
+title:title,
+
+type:type,
+
+content:content,
+
+created:
+new Date()
+.toLocaleString("ru-RU")
+
+});
+
+}
+
+saveDB();
+
+renderHome();
+
+editorList();
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function deleteMaterial(id){
+
+const item=
+DB.materials.find(
+x=>x.id===id
+);
+
+if(!item)
+return;
+
+if(
+!confirm(
+"Founder Approval\n\n" +
+"Удалить материал:\n\n" +
+item.title +
+"\n\nПродолжить?"
+)
+){
+
+return;
+
+}
+
+DB.materials=
+DB.materials.filter(
+x=>x.id!==id
+);
+
+DB.favorites=
+DB.favorites.filter(
+x=>x!==id
+);
+
+saveDB();
+
+renderHome();
+
+editorList();
+
+}
+
+
+/* =========================================================
+   FILES
+========================================================= */
+
+function editorFiles(){
+
+$("#editorArea").innerHTML=
+
+`
+
+<div class="notice">
+
+📤 Здесь можно зарегистрировать
+загруженные файлы в базе EIT Academy.
+
+Полноценное облачное файловое хранилище
+будет подключено через защищённый сервер.
+
+</div>
+
+
+<div class="field">
+
+<label>
+Направление
+</label>
+
+<select id="fileSection">
+
+${
+
+Object.entries(SECTIONS)
+.map(
+
+([key,data]) => `
+
+<option value="${key}">
+${data.name}
+</option>
+
+`
+
+)
+.join("")
+
+}
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Файлы
+</label>
+
+<input
+id="fileInput"
+type="file"
+multiple>
+
+</div>
+
+
+<div class="toolbar">
+
+<button
+class="btn"
+data-import-files>
+
+📤 Добавить файлы
+
+</button>
+
+</div>
+
+
+<div style="margin-top:15px">
+
+${
+DB.files.length
+
+?
+
+DB.files
+.map(
+
+file => `
+
+<div class="item">
+
+<div>
+
+<b>
+${escapeHTML(file.name)}
+</b>
+
+<br>
+
+<small>
+
+${escapeHTML(
+SECTIONS[file.section]?.name || ""
+)}
+
+</small>
+
+</div>
+
+</div>
+
+`
+
+)
+.join("")
+
+:
+
+`
+
+<div class="empty">
+
+Файлов пока нет.
+
+</div>
+
+`
+
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function openFavorites(){
+
+const items=
+DB.materials.filter(
+x =>
+DB.favorites.includes(x.id)
+);
+
+openModal(
+
+"☆ Избранное",
+
+items.length
+
+?
+
+items.map(materialCard).join("")
+
+:
+
+`
+
+<div class="empty">
+
+Избранных материалов пока нет.
+
+</div>
+
+`
+
+);
+
+}
+
+
+/* =========================================================
+   MY MATERIALS
+========================================================= */
+
+function openMaterials(){
+
+openModal(
+
+"□ Мои материалы",
+
+DB.materials.length
+
+?
+
+DB.materials
+.map(materialCard)
+.join("")
+
+:
+
+`
+
+<div class="empty">
+
+Материалов пока нет.
+
+</div>
+
+`
+
+);
+
+}
+
+
+/* =========================================================
+   FAVORITE
+========================================================= */
+
+function toggleFavorite(id){
+
+if(
+DB.favorites.includes(id)
+){
+
+DB.favorites=
+DB.favorites.filter(
+x=>x!==id
+);
+
+}else{
+
+DB.favorites.push(id);
+
+}
+
+saveDB();
+
+const item=
+DB.materials.find(
+x=>x.id===id
+);
+
+if(item){
+
+openSection(item.section);
+
+}
+
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+function openAdmin(){
+
+const stats=
+Object.entries(SECTIONS)
+.map(
+
+([key,data]) => `
+
+<div class="stat">
+
+<b>
+${sectionMaterials(key).length}
+</b>
+
+<span>
+${escapeHTML(data.name)}
+</span>
+
+</div>
+
+`
+
+)
+.join("");
+
+
+openModal(
+
+"👤 Администратор / Founder",
+
+`
+
+<div class="notice">
+
+🔐 <b>Founder Control</b>
+
+<br><br>
+
+Только Founder может подтверждать
+изменения приложения.
+
+<br>
+
+AI не имеет права самостоятельно
+применять изменения.
+
+</div>
+
+
+<div class="stats">
+
+${stats}
+
+<div class="stat">
+
+<b>
+${DB.files.length}
+</b>
+
+<span>
+Файлов
+</span>
+
+</div>
+
+</div>
+
+
+<section class="section">
+
+<h3>
+Управление
+</h3>
+
+<div class="toolbar">
+
+<button
+class="btn"
+data-action="editor">
+
+✏️ Редактор
+
+</button>
+
+<button
+class="btn secondary"
+data-action="export">
+
+⬇️ Экспорт базы
+
+</button>
+
+<button
+class="btn secondary"
+data-action="import">
+
+⬆️ Импорт базы
+
+</button>
+
+<button
+class="btn danger"
+data-action="reset">
+
+Очистить локальную базу
+
+</button>
+
+</div>
+
+</section>
+
+
+<div class="notice">
+
+<b>Безопасность:</b>
+
+<br><br>
+
+• Founder Approval — включён
+
+<br>
+
+• AI не применяет изменения самостоятельно
+
+<br>
+
+• API-ключи не хранятся в HTML
+
+<br>
+
+• Материалы сохраняются локально
+
+<br>
+
+• Перед подключением сервера критические
+операции должны проходить авторизацию
+
+</div>
+
+`
+
+);
+
+}
+
+
+/* =========================================================
+   AI
+========================================================= */
+
+function openAI(){
+
+openModal(
+
+"🤖 AI-помощник EIT Academy",
+
+`
+
+<div class="notice">
+
+<b>AI EIT Academy</b>
+
+<br><br>
+
+Сейчас AI работает с локальной базой
+материалов EIT Academy.
+
+<br><br>
+
+Настоящий облачный AI будет подключён
+через защищённый сервер.
+
+<br><br>
+
+🔐 API-ключ не хранится в браузере.
+
+</div>
+
+
+<div
+id="chat"
+class="chat">
+
+<div class="bubble">
+
+Привет! Я AI-помощник EIT Academy.
+
+<br><br>
+
+Спроси:
+
+<br>
+• Что есть в КИПиА?
+<br>
+• Что есть в Телекоме?
+<br>
+• Найди материал по EX
+<br>
+• Что есть в CompEx?
+
+</div>
+
+</div>
+
+
+<div class="chatRow">
+
+<input
+id="aiInput"
+placeholder="Напиши вопрос...">
+
+<button
+class="btn"
+data-ai-send>
+
+Отправить
+
+</button>
+
+</div>
+
+`
+
+);
+
+setTimeout(
+
+function(){
+
+const input=
+$("#aiInput");
+
+if(input)
+input.focus();
+
+},
+
+50
+
+);
+
+}
+
+
+/* =========================================================
+   LOCAL AI
+========================================================= */
+
+function localAI(question){
+
+const q=
+question
+.toLowerCase()
+.trim();
+
+
+if(
+q.includes("кипи") ||
+q.includes("кипиа")
+){
+
+return:
+
+}
+
+
+return "";
+
+}
+
+
+/* =========================================================
+   REAL LOCAL AI RESPONSE
+========================================================= */
+
+function getAIAnswer(question){
+
+const q=
+question
+.toLowerCase()
+.trim();
+
+
+if(
+q.includes("кипи") ||
+q.includes("датчик") ||
+q.includes("автоматиза")
+){
+
+const items=
+sectionMaterials("kip");
+
+return:
+
+}
+
+
+return "";
+
+}
+
+
+/* =========================================================
+   AI SEARCH
+========================================================= */
+
+function answerAI(question){
+
+const q=
+question
+.toLowerCase()
+.trim();
+
+
+if(!q){
+
+return "Напиши вопрос.";
+
+}
+
+
+/*
+Search exact materials
+*/
+
+const words=
+q
+.split(/\s+/)
+.filter(
+word =>
+word.length>2
+);
+
+
+const matches=
+DB.materials.filter(
+
+item => {
+
+const text=
+(
+item.title +
+" " +
+item.content +
+" " +
+SECTIONS[item.section].name
+)
+.toLowerCase();
+
+return words.some(
+word =>
+text.includes(word)
+);
+
+}
+
+);
+
+
+if(matches.length){
+
+return:
+
+}
+
+
+/*
+Section questions
+*/
+
+if(
+q.includes("кипи") ||
+q.includes("кипиа")
+){
+
+return:
+
+}
+
+
+if(
+q.includes("телеком")
+){
+
+return:
+
+}
+
+
+if(
+q.includes("compex")
+){
+
+return:
+
+}
+
+
+if(
+q.includes("ex") ||
+q.includes("взрывозащ")
+){
+
+return:
+
+}
+
+
+return:
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function openSearch(){
+
+openModal(
+
+"⌕ Поиск",
+
+`
+
+<div class="field">
+
+<input
+id="searchInput"
+placeholder="Поиск по материалам...">
+
+</div>
+
+<div
+id="searchResults">
+
+</div>
+
+`
+
+);
+
+setTimeout(
+
+function(){
+
+$("#searchInput")?.focus();
+
+},
+
+30
+
+);
+
+}
+
+
+function renderSearch(){
+
+const q=
+$("#searchInput")
+.value
+.toLowerCase()
+.trim();
+
+
+const results=
+DB.materials.filter(
+
+item => {
+
+const text=
+(
+item.title +
+" " +
+item.content +
+" " +
+SECTIONS[item.section].name
+)
+.toLowerCase();
+
+return text.includes(q);
+
+}
+
+);
+
+
+$("#searchResults").innerHTML=
+
+results.length
+
+?
+
+results.map(materialCard).join("")
+
+:
+
+`
+
+<div class="empty">
+
+Ничего не найдено.
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   EXPORT
+========================================================= */
+
+function exportDB(){
+
+const blob=
+new Blob(
+
+[
+JSON.stringify(
+DB,
+null,
+2
+)
+],
+
+{
+type:"application/json"
+}
+
+);
+
+const url=
+URL.createObjectURL(blob);
+
+const link=
+document.createElement("a");
+
+link.href=url;
+
+link.download=
+"eit-academy-database.json";
+
+link.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================================================
+   IMPORT
+========================================================= */
+
+function importDB(){
+
+const input=
+document.createElement("input");
+
+input.type="file";
+
+input.accept=
+".json,application/json";
+
+
+input.onchange=function(){
+
+const file=
+input.files[0];
+
+if(!file)
+return;
+
+const reader=
+new FileReader();
+
+
+reader.onload=function(){
+
+try{
+
+const imported=
+JSON.parse(
+reader.result
+);
+
+
+if(
+!imported ||
+!Array.isArray(
+imported.materials
+)
+){
+
+throw new Error();
+
+}
+
+
+DB=imported;
+
+saveDB();
+
+renderHome();
+
+openAdmin();
+
+
+}catch(error){
+
+alert(
+"Ошибка импорта базы."
+);
+
+}
+
+};
+
+
+reader.readAsText(file);
+
+};
+
+
+input.click();
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetDB(){
+
+if(
+!confirm(
+"Founder Approval\n\n" +
+"Очистить локальную базу?"
+)
+){
+
+return;
+
+}
+
+
+DB={
+
+materials:STARTER,
+
+favorites:[],
+
+files:[],
+
+settings:{
+
+founderApproval:true,
+
+securityMode:true
+
+}
+
+};
+
+saveDB();
+
+renderHome();
+
+openAdmin();
+
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+function about(){
+
+openModal(
+
+"ⓘ EIT Academy",
+
+`
+
+<h3>
+EIT Academy
+</h3>
+
+<p>
+
+Electrical · Instrumentation · Telecom
+
+</p>
+
+<p>
+
+EX и CompEx являются отдельными
+направлениями.
+
+</p>
+
+<p class="muted">
+
+Founder Control: ON
+
+<br>
+
+Security Mode: ON
+
+</p>
+
+`
+
+);
+
+}
+
+
+/* =========================================================
+   UPLOADS
+========================================================= */
+
+function openUploads(){
+
+openEditor();
+
+setTimeout(
+
+function(){
+
+editorFiles();
+
+},
+
+20
+
+);
+
+}
+
+
+/* =========================================================
+   HANDLE FILE IMPORT
+========================================================= */
+
+function importFiles(){
+
+const input=
+$("#fileInput");
+
+const section=
+$("#fileSection").value;
+
+if(
+!input.files.length
+){
+
+alert(
+"Выбери файл."
+);
+
+return;
+
+}
+
+
+for(
+const file of input.files
+){
+
+DB.files.push({
+
+id:
+"file-" +
+Date.now() +
+Math.random(),
+
+name:file.name,
+
+section:section,
+
+size:file.size,
+
+created:
+new Date()
+.toLocaleString(
+"ru-RU"
+)
+
+});
+
+}
+
+saveDB();
+
+editorFiles();
+
+}
+
+
+/* =========================================================
+   RENDER HOME
+========================================================= */
+
+function renderHome(){
+
+const continueBox=
+$("#continue");
+
+const recentBox=
+$("#recent");
+
+
+continueBox.innerHTML=
+
+Object.entries(SECTIONS)
+.slice(0,4)
+.map(
+
+([key,data]) => {
+
+const items=
+sectionMaterials(key);
+
+const first=
+items[0];
+
+return `
+
+<div class="lesson">
+
+<div
+style="
+color:${data.color};
+font-size:12px;
+">
+
+${data.icon}
+
+${escapeHTML(data.name)}
+
+</div>
+
+<div class="lessonTitle">
+
+${
+first
+?
+escapeHTML(first.title)
+:
+"Материалы пока не добавлены"
+}
+
+</div>
+
+<div class="progress">
+
+<i
+style="
+width:${first?"100":"0"}%;
+background:${data.color};
+">
+
+</i>
+
+</div>
+
+<div
+style="
+text-align:right;
+font-size:12px;
+margin-top:6px;
+">
+
+${items.length}
+
+материалов
+
+</div>
+
+</div>
+
+`;
+
+}
+
+)
+.join("");
+
+
+recentBox.innerHTML=
+
+DB.materials
+.slice(-7)
+.reverse()
+.map(
+
+item => `
+
+<div class="row">
+
+<span>
+
+${SECTIONS[item.section].icon}
+
+${escapeHTML(
+SECTIONS[item.section].name
+)}
+
+</span>
+
+<span>
+
+${escapeHTML(item.title)}
+
+</span>
+
+<span class="muted">
+
+${escapeHTML(
+item.created || ""
+)}
+
+</span>
+
+</div>
+
+`
+
+)
+.join("")
+
+||
+
+`
+
+<div class="empty">
+
+Материалов пока нет.
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   EDITOR TABS
+========================================================= */
+
+document.addEventListener(
+"click",
+
+function(event){
+
+const target=
+event.target.closest(
+"button,[data-section],[data-action]"
+);
+
+if(!target)
+return;
+
+
+/* SECTION */
+
+if(
+target.dataset.section
+){
+
+openSection(
+target.dataset.section
+);
+
+return;
+
+}
+
+
+/* ACTION */
+
+const action=
+target.dataset.action;
+
+
+if(action==="home")
+home();
+
+
+else if(action==="ai")
+openAI();
+
+
+else if(action==="admin")
+openAdmin();
+
+
+else if(action==="editor")
+openEditor();
+
+
+else if(action==="materials")
+openMaterials();
+
+
+else if(action==="favorites")
+openFavorites();
+
+
+else if(action==="uploads")
+openUploads();
+
+
+else if(action==="search")
+openSearch();
+
+
+else if(action==="about")
+about();
+
+
+else if(action==="close")
+closeModal();
+
+
+else if(action==="export")
+exportDB();
+
+
+else if(action==="import")
+importDB();
+
+
+else if(action==="reset")
+resetDB();
+
+
+/* MATERIAL */
+
+if(
+target.dataset.openMaterial
+){
+
+openMaterial(
+target.dataset.openMaterial
+);
+
+}
+
+
+if(
+target.dataset.favorite
+){
+
+toggleFavorite(
+target.dataset.favorite
+);
+
+}
+
+
+/* EDITOR */
+
+if(
+target.dataset.editorTab
+){
+
+const tab=
+target.dataset.editorTab;
+
+if(tab==="new")
+editorNew();
+
+if(tab==="list")
+editorList();
+
+if(tab==="files")
+editorFiles();
+
+}
+
+
+/* SAVE */
+
+if(
+target.dataset.saveMaterial !== undefined
+){
+
+saveMaterial(
+target.dataset.saveMaterial
+);
+
+}
+
+
+/* EDIT */
+
+if(
+target.dataset.editMaterial
+){
+
+editorNew(
+target.dataset.editMaterial
+);
+
+}
+
+
+/* DELETE */
+
+if(
+target.dataset.deleteMaterial
+){
+
+deleteMaterial(
+target.dataset.deleteMaterial
+);
+
+}
+
+
+/* FILES */
+
+if(
+target.dataset.importFiles
+){
+
+importFiles();
+
+}
+
+
+/* AI */
+
+if(
+target.dataset.aiSend
+){
+
+sendAI();
+
+}
+
+}
+
+);
+
+
+/* =========================================================
+   AI SEND
+========================================================= */
+
+async function sendAI(){
+
+const input=
+$("#aiInput");
+
+const chat=
+$("#chat");
+
+if(!input || !chat)
+return;
+
+
+const question=
+input.value.trim();
+
+if(!question)
+return;
+
+
+chat.innerHTML+=`
+
+<div class="bubble me">
+
+${escapeHTML(question)}
+
+</div>
+
+`;
+
+
+input.value="";
+
+
+/*
+REAL SERVER AI
+*/
+
+if(AI_API_URL){
+
+try{
+
+const response=
+await fetch(
+AI_API_URL,
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/json"
+
+},
+
+body:JSON.stringify({
+
+question:question,
+
+materials:DB.materials
+
+})
+
+}
+
+);
+
+
+if(!response.ok){
+
+throw new Error();
+
+}
+
+
+const data=
+await response.json();
+
+
+chat.innerHTML+=`
+
+<div class="bubble">
+
+${escapeHTML(
+data.answer ||
+"AI не вернул ответ."
+)}
+
+</div>
+
+`;
+
+
+chat.scrollTop=
+chat.scrollHeight;
+
+return;
+
+
+}catch(error){
+
+chat.innerHTML+=`
+
+<div class="bubble">
+
+⚠️ Сервер AI временно недоступен.
+
+Переходим в локальный режим.
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/*
+LOCAL MODE
+*/
+
+const answer=
+answerAILocal(
+question
+);
+
+
+chat.innerHTML+=`
+
+<div class="bubble">
+
+${escapeHTML(answer)}
+
+</div>
+
+`;
+
+
+chat.scrollTop=
+chat.scrollHeight;
+
+}
+
+
+/* =========================================================
+   LOCAL AI ENGINE
+========================================================= */
+
+function answerAILocal(question){
+
+const q=
+question
+.toLowerCase();
+
+
+/*
+SEARCH DATABASE
+*/
+
+const words=
+q
+.replace(
+/[^а-яa-z0-9ё]+/gi,
+" "
+)
+.split(/\s+/)
+.filter(
+word =>
+word.length>2
+);
+
+
+const matches=
+DB.materials.filter(
+
+item => {
+
+const text=
+(
+item.title +
+" " +
+item.content +
+" " +
+SECTIONS[item.section].name
+)
+.toLowerCase();
+
+
+return words.some(
+word =>
+text.includes(word)
+);
+
+}
+
+);
+
+
+if(matches.length){
+
+return:
+
+}
+
+
+/*
+SECTIONS
+*/
+
+if(
+q.includes("кипи") ||
+q.includes("датчик")
+){
+
+return:
+
+}
+
+
+if(
+q.includes("телеком")
+){
+
+return:
+
+}
+
+
+if(
+q.includes("compex")
+){
+
+return:
+
+}
+
+
+if(
+q.includes("ex") ||
+q.includes("взрыв")
+){
+
+return:
+
+}
+
+
+if(
+q.includes("электр")
+){
+
+return:
+
+}
+
+
+return:
+
+}
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+"keydown",
+
+function(event){
+
+if(
+event.key==="Escape"
+){
+
+closeModal();
+
+}
+
+
+if(
+event.key==="Enter" &&
+event.target.id==="aiInput"
+){
+
+sendAI();
+
+}
+
+});
+
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+document.addEventListener(
+"input",
+
+function(event){
+
+if(
+event.target.id==="searchInput"
+){
+
+renderSearch();
+
+}
+
+});
+
+
+/* =========================================================
+   CLOSE MODAL BY BACKDROP
+========================================================= */
+
+$("#overlay").addEventListener(
+
+"click",
+
+function(event){
+
+if(
+event.target.id==="overlay"
+){
+
+closeModal();
+
+}
+
+});
+
+
+/* =========================================================
+   START
+========================================================= */
+
+renderHome();
+
+</script>
+
+</body>
+</html>
